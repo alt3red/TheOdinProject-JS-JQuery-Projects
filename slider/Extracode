@@ -1,0 +1,70 @@
+$(function() {
+	//configuration
+	var speed = 5000,
+	current = 1;
+
+	//cache dom 
+	var $slider = $('#slider'),
+	prev = $('div.slidecontainer').find('#prev'),
+	next = $('div.slidecontainer').find('#next'), 
+	$img = $slider.find('img'),
+	imgLen = $img.length, 
+	imgWidth = $img[0].width,
+	totalWidth = imgLen * imgWidth,
+	nav = $(this).data('nav');
+
+	var animateSlide = function() {
+		setInterval(function() { 
+			$slider.animate({
+			if (nav === 'next') ? current++ : current--; 
+
+			})}, speed);
+		});
+
+
+		$slider.animate({'margin-left':'-='+imgWidth}); 
+
+
+		  // go to last slide 
+		if (current === 0) {
+			current = imgLen;
+			$slider.css({'margin-left':totalWidth - imgWidth})
+		}
+		 //go to first slide 
+		else if (current - 1 == imgLen) {
+			 current = 1;
+			 $slider.css({'margin-left': imgWidth});
+		}
+
+
+    };
+
+    var animateSlide = function(container, loc, direction) {
+		var unit; // += or -=
+
+			if (direction && loc !== 0) {
+			unit = (direction === 'next') ? '-=' : '+='; 
+		}
+
+		SetInterval(function() {
+			container.animate({
+				'margin-left': unit ? (unit + loc) : loc
+			})
+		})}, speed);
+
+
+	// 
+
+	next.on('click', function() {
+		$slider.animate({'margin-left':'-='+imgWidth}); 
+		 current++;
+	})
+
+	prev.on('click', function() {
+		$slider.css({'margin-left':totalWidth - imgWidth})
+		 current++;
+	})
+
+   
+//How do I link the circle nav with the slideshow?
+
